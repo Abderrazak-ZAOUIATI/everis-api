@@ -11,13 +11,13 @@ public class OfferDTO {
 	private String publicationDate;
 	private int numberOfApplications;
 	    
-	private List<ApplicationDTO> applications;
+	private List<ApplicationDTO> applicationsDto;
 	 
 	public OfferDTO() {
 	}
 
 	public OfferDTO(int id, String title, String description, String status, String publicationDate,
-			int numberOfApplications, List<ApplicationDTO> applications) {
+			int numberOfApplications, List<ApplicationDTO> applicationsDto) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -25,7 +25,7 @@ public class OfferDTO {
 		this.status = status;
 		this.publicationDate = publicationDate;
 		this.numberOfApplications = numberOfApplications;
-		this.applications = applications;
+		this.applicationsDto = applicationsDto;
 	}
 
 	public int getId() {
@@ -78,21 +78,20 @@ public class OfferDTO {
 		this.numberOfApplications = numberOfApplications;
 	}
 
-	public List<ApplicationDTO> getApplications() {
-		return applications;
+	public List<ApplicationDTO> getApplicationsDto() {
+		return applicationsDto;
 	}
 
-	public void setApplications(List<ApplicationDTO> applications) {
-		this.applications = applications;
+	public void setApplicationsDto(List<ApplicationDTO> applicationsDto) {
+		this.applicationsDto = applicationsDto;
 	}
 
 	@Override
 	public String toString() {
-		return "Offer [id=" + id + ", title=" + title + ", description=" + description + ", status=" + status
+		return "OfferDTO [id=" + id + ", title=" + title + ", description=" + description + ", status=" + status
 				+ ", publicationDate=" + publicationDate + ", numberOfApplications=" + numberOfApplications
-				+ ", applications=" + applications + "]";
-	}    
-  
-	
+				+ ", applicationsDto=" + applicationsDto + "]";
+	}
+
 
 }

@@ -62,7 +62,7 @@ public class GenericDAOImpl<T, K extends Serializable> implements GenericDAO<T, 
 
 		try {
 			openConnexion();
-			this.session.saveOrUpdate(t);
+			this.session.update(t);
 			this.session.getTransaction().commit();
 			closeConnexion();
 			return t;
@@ -104,7 +104,7 @@ public class GenericDAOImpl<T, K extends Serializable> implements GenericDAO<T, 
 
 		closeConnexion();
 
-		return Optional.of(t);
+		return Optional.ofNullable(t);
 	}
 
 	@Override

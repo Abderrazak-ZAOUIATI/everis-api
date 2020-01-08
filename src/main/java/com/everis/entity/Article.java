@@ -21,10 +21,10 @@ public class Article {
 	private String publicationDate;
 	private String status;
 	    
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
 	@JoinColumn(name="userId",referencedColumnName = "id")
 	private User user;
-	 
+	  
 	public Article() {
 	}
 

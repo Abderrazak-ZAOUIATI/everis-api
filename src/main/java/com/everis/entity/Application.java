@@ -18,7 +18,7 @@ public class Application {
 	private String applicationDate;
 	private String status;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId", referencedColumnName = "id")
 	private User user;
 

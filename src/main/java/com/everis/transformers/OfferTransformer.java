@@ -32,7 +32,7 @@ public class OfferTransformer extends AbstractTransformer<Offer, OfferDTO> {
 		offerDTO.setTitle(offer.getTitle());
 
 		if(offer != null && offer.getApplications() != null && abstractTransformerApplication != null) 		
-			offerDTO.setApplications(abstractTransformerApplication.toDTOList(offer.getApplications()));
+			offerDTO.setApplicationsDto(abstractTransformerApplication.toDTOList(offer.getApplications()));
 			
 		return offerDTO;
 	}
@@ -49,8 +49,8 @@ public class OfferTransformer extends AbstractTransformer<Offer, OfferDTO> {
 		offer.setStatus(offerDTO.getStatus());
 		offer.setTitle(offerDTO.getTitle());
 
-		if(offerDTO != null && offerDTO.getApplications() != null && abstractTransformerApplication != null) 		
-			offer.setApplications(abstractTransformerApplication.toEntityList(offerDTO.getApplications()));
+		if(offerDTO != null && offerDTO.getApplicationsDto() != null && abstractTransformerApplication != null) 		
+			offer.setApplications(abstractTransformerApplication.toEntityList(offerDTO.getApplicationsDto()));
 			
 		return offer;
 		

@@ -22,7 +22,7 @@ public class Offer {
 	private String publicationDate;
 	private int numberOfApplications;
 	    
-	@OneToMany(mappedBy = "offer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "offer", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Application> applications;
 	 
 	public Offer() {
@@ -30,7 +30,6 @@ public class Offer {
 
 	public Offer(int id, String title, String description, String status, String publicationDate,
 			int numberOfApplications, List<Application> applications) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
