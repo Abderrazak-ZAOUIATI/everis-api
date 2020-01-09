@@ -3,9 +3,7 @@ package com.everis.dao;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface GenericDAO<T, K extends Serializable> {
 
 	void openConnexion();

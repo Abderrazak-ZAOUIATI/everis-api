@@ -1,20 +1,8 @@
-package com.everis.entity;
+package com.everis.service.dto;
 
 import java.util.List;
+public class UserDTO {
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-@Entity
-public class User {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -24,31 +12,16 @@ public class User {
 	private String address;
 	private String type;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
-	private List<Application> applications;
+	private List<ApplicationDTO> applications;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-	private List<Article> articles;
+	private List<ArticleDTO> articles;
 
-	public User() {
+	public UserDTO() {
 	}
 
-	public User(int id, String firstName, String lastName, String email, String password, String phoneNumber,
-			String address, String type, List<Application> applications, List<Article> articles) {
+	public UserDTO(int id, String firstName, String lastName, String email, String password, String phoneNumber,
+			String address, String type, List<ApplicationDTO> applications, List<ArticleDTO> articles) {
 		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.phoneNumber = phoneNumber;
-		this.address = address;
-		this.type = type;
-		this.applications = applications;
-		this.articles = articles;
-	}
-
-	public User(String firstName, String lastName, String email, String password, String phoneNumber, String address,
-			String type, List<Application> applications, List<Article> articles) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -124,19 +97,19 @@ public class User {
 		this.type = type;
 	}
 
-	public List<Application> getApplications() {
+	public List<ApplicationDTO> getApplications() {
 		return applications;
 	}
 
-	public void setApplications(List<Application> applications) {
+	public void setApplications(List<ApplicationDTO> applications) {
 		this.applications = applications;
 	}
 
-	public List<Article> getArticles() {
+	public List<ArticleDTO> getArticles() {
 		return articles;
 	}
 
-	public void setArticles(List<Article> articles) {
+	public void setArticles(List<ArticleDTO> articles) {
 		this.articles = articles;
 	}
 

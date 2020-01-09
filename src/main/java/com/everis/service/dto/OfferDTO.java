@@ -1,20 +1,9 @@
-package com.everis.entity;
+package com.everis.service.dto;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+public class OfferDTO {
 
-@Entity
-public class Offer {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String title;
 	private String description;
@@ -22,21 +11,21 @@ public class Offer {
 	private String publicationDate;
 	private int numberOfApplications;
 	    
-	@OneToMany(mappedBy = "offer", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	private List<Application> applications;
+	private List<ApplicationDTO> applicationsDto;
 	 
-	public Offer() {
+	public OfferDTO() {
 	}
 
-	public Offer(int id, String title, String description, String status, String publicationDate,
-			int numberOfApplications, List<Application> applications) {
+	public OfferDTO(int id, String title, String description, String status, String publicationDate,
+			int numberOfApplications, List<ApplicationDTO> applicationsDto) {
+		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.status = status;
 		this.publicationDate = publicationDate;
 		this.numberOfApplications = numberOfApplications;
-		this.applications = applications;
+		this.applicationsDto = applicationsDto;
 	}
 
 	public int getId() {
@@ -89,21 +78,20 @@ public class Offer {
 		this.numberOfApplications = numberOfApplications;
 	}
 
-	public List<Application> getApplications() {
-		return applications;
+	public List<ApplicationDTO> getApplicationsDto() {
+		return applicationsDto;
 	}
 
-	public void setApplications(List<Application> applications) {
-		this.applications = applications;
+	public void setApplicationsDto(List<ApplicationDTO> applicationsDto) {
+		this.applicationsDto = applicationsDto;
 	}
 
 	@Override
 	public String toString() {
-		return "Offer [id=" + id + ", title=" + title + ", description=" + description + ", status=" + status
+		return "OfferDTO [id=" + id + ", title=" + title + ", description=" + description + ", status=" + status
 				+ ", publicationDate=" + publicationDate + ", numberOfApplications=" + numberOfApplications
-				+ "]";
-	}    
-  
-	
+				+ ", applicationsDto=" + applicationsDto + "]";
+	}
+
 
 }

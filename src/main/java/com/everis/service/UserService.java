@@ -1,8 +1,6 @@
 package com.everis.service;
 
-import org.springframework.stereotype.Service;
-import com.everis.dto.UserDTO;
+import com.everis.service.dto.UserDTO;
 
-@Service
 public interface UserService extends GenericService<UserDTO, Integer>{	
 }

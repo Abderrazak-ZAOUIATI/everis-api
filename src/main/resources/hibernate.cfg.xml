@@ -11,7 +11,7 @@
     <session-factory>
 
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/everis-project-db</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/everisprojectdb</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   
@@ -26,10 +26,10 @@
  
             <property name="hbm2ddl.auto">update</property>
 
-            <mapping class="com.everis.entity.User"/>
-            <mapping class="com.everis.entity.Application"/>
-            <mapping class="com.everis.entity.Offer"/>
-            <mapping class="com.everis.entity.Article"/>
+            <mapping class="com.everis.dao.entity.User"/>
+            <mapping class="com.everis.dao.entity.Application"/>
+            <mapping class="com.everis.dao.entity.Offer"/>
+            <mapping class="com.everis.dao.entity.Article"/>
             
     </session-factory>
     

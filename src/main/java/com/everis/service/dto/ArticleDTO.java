@@ -1,4 +1,4 @@
-package com.everis.dto;
+package com.everis.service.dto;
 
 public class ArticleDTO {
 
@@ -8,9 +8,9 @@ public class ArticleDTO {
 	private String image;
 	private String publicationDate;
 	private String status;
-	    
+
 	private UserDTO userDto;
-	 
+
 	public ArticleDTO() {
 	}
 
@@ -86,6 +86,5 @@ public class ArticleDTO {
 		return "ArticleDTO [id=" + id + ", title=" + title + ", content=" + content + ", image=" + image
 				+ ", publicationDate=" + publicationDate + ", status=" + status + ", userDto=" + userDto + "]";
 	}
- 
-  
+
 }

@@ -1,16 +1,16 @@
-package com.everis.transformers;
+package com.everis.service.transformers;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class  AbstractTransformer<E, D> {
-	
+public abstract class AbstractTransformer<E, D> {
+
 	public abstract D toDTO(E e);
 
 	public abstract E toEntity(D d);
 
 	public List<D> toDTOList(List<E> entityList) {
-		List<D> dtoList = new ArrayList<D>(); 
+		List<D> dtoList = new ArrayList<D>();
 
 		for (E e : entityList) {
 			dtoList.add(toDTO(e));
@@ -19,7 +19,7 @@ public abstract class  AbstractTransformer<E, D> {
 		return dtoList;
 	}
 
-	public List<E> toEntityList(List<D> dtoList) { 
+	public List<E> toEntityList(List<D> dtoList) {
 		List<E> entityList = new ArrayList<E>();
 
 		for (D d : dtoList) {

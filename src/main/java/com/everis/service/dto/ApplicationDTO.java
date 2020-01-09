@@ -1,4 +1,4 @@
-package com.everis.dto;
+package com.everis.service.dto;
 
 public class ApplicationDTO {
 

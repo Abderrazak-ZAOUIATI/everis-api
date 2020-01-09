@@ -15,8 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.everis.dao.ArticleGenericDAO;
 import com.everis.dao.UserGenericDAO;
-import com.everis.entity.Article;
-import com.everis.entity.User;
+import com.everis.dao.entity.Article;
+import com.everis.dao.entity.User;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -28,13 +28,12 @@ class EverisApiApplicationTests {
 	@Autowired
 	ArticleGenericDAO articelGenericDAO;
 
-	//Set userId and articleId (from database) to permit delete and update functions.
+	// Set userId and articleId (from database) to permit delete and update
+	// functions.
 	int articleId = 1;
 	int userId = 1;
 
-	
-	
-	//User DAO test
+	// User DAO test
 	@Test
 	@Order(1)
 	void createUser() {
@@ -155,6 +154,5 @@ class EverisApiApplicationTests {
 		assertNotEquals(null, articleResult);
 	}
 
-	
-	//Application DAO test
+	// Application DAO test
 }

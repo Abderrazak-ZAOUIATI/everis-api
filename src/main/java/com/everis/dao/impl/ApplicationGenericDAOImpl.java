@@ -1,15 +1,14 @@
 package com.everis.dao.impl;
 
-import org.springframework.stereotype.Component;
-
+import org.springframework.stereotype.Repository;
 import com.everis.dao.ApplicationGenericDAO;
-import com.everis.entity.Application;
+import com.everis.dao.entity.Application;
 
-@Component
-public class ApplicationGenericDAOImpl extends GenericDAOImpl<Application,Integer> implements ApplicationGenericDAO {
+@Repository
+public class ApplicationGenericDAOImpl extends GenericDAOImpl<Application, Integer> implements ApplicationGenericDAO {
 
-	 public ApplicationGenericDAOImpl() {
-	        super(Application.class);
-	  }
+	public ApplicationGenericDAOImpl() {
+		super(Application.class);
+	}
 
-} 
+}
