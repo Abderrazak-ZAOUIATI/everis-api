@@ -84,8 +84,18 @@ public class UserServiceImpl implements UserService {
 	public List<UserDTO> getAll() {
 
 		List<User> users = userGenericDAO.getAll();
-		List<UserDTO> usersDTO = userTransformer.toDTOList(users);
-		return usersDTO;
+
+		return userTransformer.toDTOList(users);
+	}
+
+	@Override
+	public UserDTO getByEmailAndPassword(UserDTO userDto) {
+		
+		String email = userDto.getEmail();
+		String password = userDto.getPassword();
+		User user = userGenericDAO.getByEmailAndPassword(email,password);
+	    
+		return userTransformer.toDTO(user);
 	}
 
 }
