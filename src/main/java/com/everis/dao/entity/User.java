@@ -23,8 +23,9 @@ public class User {
 	private String phoneNumber;
 	private String address;
 	private String type;
+	private String compteStatus;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Application> applications;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
@@ -34,7 +35,7 @@ public class User {
 	}
 
 	public User(int id, String firstName, String lastName, String email, String password, String phoneNumber,
-			String address, String type, List<Application> applications, List<Article> articles) {
+			String address, String type, String compteStatus, List<Application> applications, List<Article> articles) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -43,6 +44,7 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.type = type;
+		this.compteStatus = compteStatus;
 		this.applications = applications;
 		this.articles = articles;
 	}
@@ -140,11 +142,19 @@ public class User {
 		this.articles = articles;
 	}
 
+	public String getCompteStatus() {
+		return compteStatus;
+	}
+
+	public void setCompteStatus(String compteStatus) {
+		this.compteStatus = compteStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", phoneNumber=" + phoneNumber + ", address=" + address + ", type=" + type
-				+ ", applications=" + applications + ", articles=" + articles + "]";
+				+ ", compteStatus=" + compteStatus + ", applications=" + applications + ", articles=" + articles + "]";
 	}
 
 }

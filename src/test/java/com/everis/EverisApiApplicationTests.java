@@ -51,7 +51,7 @@ class EverisApiApplicationTests {
 	void updateUser() {
 
 		User user = new User(this.userId, "firstName updated", "lastName", "email", " password", " phoneNumber",
-				"address", " type", null, null);
+				"address", " type","Activated", null, null);
 
 		User userResult = userGenericDAO.update(user);
 

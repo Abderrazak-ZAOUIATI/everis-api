@@ -1,13 +1,17 @@
 package com.everis.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.everis.dao.UserGenericDAO;
 import com.everis.dao.entity.Application;
 import com.everis.dao.entity.Article;
 import com.everis.dao.entity.User;
+import com.everis.service.SendVerificationCode;
 import com.everis.service.UserService;
 import com.everis.service.dto.ApplicationDTO;
 import com.everis.service.dto.ArticleDTO;
@@ -34,10 +38,23 @@ public class UserServiceImpl implements UserService {
 	public UserDTO create(UserDTO userDTO) {
 
 		User user = userTransformer.toEntity(userDTO);
+		
+		//Create verification code
+		String verificationCode = UUID.randomUUID().toString().replace("-", "");
+		user.setCompteStatus(verificationCode);
+		
 		User userResult = userGenericDAO.create(user);
-		UserDTO userDTOResult = userTransformer.toDTO(userResult);
-
-		return userDTOResult;
+		
+		if(userResult.getId() != 0)
+		{
+			String name = user.getLastName().toUpperCase();
+			name += " "+user.getFirstName().substring(0, 1).toUpperCase();
+			name +=user.getFirstName().substring(1, user.getFirstName().length());
+			
+			SendVerificationCode.sendCodeVerification(name, userResult.getEmail(), verificationCode);
+		}
+		
+		return userTransformer.toDTO(userResult);
 	}
 
 	@Override
@@ -98,4 +115,24 @@ public class UserServiceImpl implements UserService {
 		return userTransformer.toDTO(user);
 	}
 
+	@Override
+	public List<String> confirmAccount(int userId, String verificationCode) {
+		
+		List<String> response = new ArrayList<>();
+		
+		Optional<User> userOptional = userGenericDAO.getById(userId);
+		if(userOptional.isPresent()) {
+			User user = userOptional.get();
+			if(user.getCompteStatus().equals(verificationCode)) {
+				response.add("OK");
+				user.setCompteStatus("Activated");
+				userGenericDAO.update(user);
+			}
+			else {
+				response.add("NOK");
+			}
+		}
+		return response;
+	}
+	
 }

@@ -37,11 +37,12 @@ public class UserTransformer extends AbstractTransformer<User, UserDTO> {
 		userDTO.setPhoneNumber(user.getPhoneNumber());
 		userDTO.setPassword(user.getPassword());
 		userDTO.setType(user.getType());
-
-		if (user != null && user.getArticles() != null && abstractTransformerArticle != null)
+		userDTO.setCompteStatus(user.getCompteStatus());
+		
+		if (user.getArticles() != null && abstractTransformerArticle != null)
 			userDTO.setArticles(abstractTransformerArticle.toDTOList(user.getArticles()));
 
-		if (user != null && user.getApplications() != null && abstractTransformerApplication != null)
+		if (user.getApplications() != null && abstractTransformerApplication != null)
 			userDTO.setApplications(abstractTransformerApplication.toDTOList(user.getApplications()));
 
 		return userDTO;
@@ -60,11 +61,12 @@ public class UserTransformer extends AbstractTransformer<User, UserDTO> {
 		user.setPhoneNumber(userDTO.getPhoneNumber());
 		user.setPassword(userDTO.getPassword());
 		user.setType(userDTO.getType());
+		user.setCompteStatus(userDTO.getCompteStatus());
 
-		if (userDTO != null && userDTO.getArticles() != null && abstractTransformerArticle != null)
+		if (userDTO.getArticles() != null && abstractTransformerArticle != null)
 			user.setArticles(abstractTransformerArticle.toEntityList(userDTO.getArticles()));
 
-		if (userDTO != null && userDTO.getApplications() != null && abstractTransformerApplication != null)
+		if (userDTO.getApplications() != null && abstractTransformerApplication != null)
 			user.setApplications(abstractTransformerApplication.toEntityList(userDTO.getApplications()));
 
 		return user;
