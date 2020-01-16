@@ -13,9 +13,13 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.everis.dao.ApplicationGenericDAO;
 import com.everis.dao.ArticleGenericDAO;
+import com.everis.dao.OfferGenericDAO;
 import com.everis.dao.UserGenericDAO;
+import com.everis.dao.entity.Application;
 import com.everis.dao.entity.Article;
+import com.everis.dao.entity.Offer;
 import com.everis.dao.entity.User;
 
 @SpringBootTest
@@ -27,11 +31,20 @@ class EverisApiApplicationTests {
 
 	@Autowired
 	ArticleGenericDAO articelGenericDAO;
+	
+	@Autowired
+	ApplicationGenericDAO applicationGenericDAO;
+	
+	@Autowired
+	OfferGenericDAO offerGenericDAO;
 
 	// Set userId and articleId (from database) to permit delete and update
 	// functions.
-	int articleId = 1;
-	int userId = 1;
+	int articleId = 3;
+	int userId = 3;
+	
+	int offerId=4;
+	int apllicationId=4;
 
 	// User DAO test
 	@Test
@@ -155,4 +168,66 @@ class EverisApiApplicationTests {
 	}
 
 	// Application DAO test
+	@Test
+	@Order(11)
+	void createApplication()
+	{
+		User user = new User("firstName", "lastName", "email", " password", " phoneNumber", "address", " type", null,null);
+		User userResult = userGenericDAO.create(user);
+
+		Offer offer = new Offer(0,"title","description","status","publicationDate",0,null);
+		Offer offerResult = offerGenericDAO.create(offer);
+		
+		Application application = new Application(0,"applicationDate","status",userResult,offerResult);
+		Application applicationResult = applicationGenericDAO.create(application);
+
+		assertNotEquals(0, applicationResult.getId());
+	}
+	
+	@Test
+	@Order(12)
+	void updateApplication() {
+
+		User user = new User("firstName", "lastName", "email", " password", " phoneNumber", "address", " type", null,null);
+		User userResult = userGenericDAO.create(user);
+		
+		Offer offer = new Offer(0,"title","description","status","publicationDate",0,null);
+		Offer offerResult = offerGenericDAO.create(offer);
+		
+		Application application = new Application(this.apllicationId,"applicationDate","status",userResult,offerResult);
+		Application applicationResult = applicationGenericDAO.update(application);
+
+		assertNotEquals(null, applicationResult);
+	}
+
+	@Test
+	@Order(13)
+	void getApplication() {
+
+		Optional<Application> applicationResult = applicationGenericDAO.getById(this.apllicationId);
+
+		if (applicationResult.isPresent()) {
+			assertNotEquals(applicationResult.get().getId(), 0);
+		} else {
+			assertEquals(true, false);
+		}
+	}
+
+	@Test
+	@Order(14)
+	void getAllApplication() {
+
+		List<Application> applications = applicationGenericDAO.getAll();
+
+		assertNotEquals(null, applications);
+	}
+
+	@Test
+	@Order(15)
+	void deleteApplication() {
+
+		Application applicationResult = applicationGenericDAO.delete(this.apllicationId);
+
+		assertNotEquals(null, applicationResult);
+	}
 }
