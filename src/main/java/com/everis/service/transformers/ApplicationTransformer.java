@@ -1,11 +1,11 @@
-package com.everis.transformers;
+package com.everis.service.transformers;
 
-import com.everis.dto.ApplicationDTO;
-import com.everis.dto.OfferDTO;
-import com.everis.dto.UserDTO;
-import com.everis.entity.Application;
-import com.everis.entity.Offer;
-import com.everis.entity.User;
+import com.everis.dao.entity.Application;
+import com.everis.dao.entity.Offer;
+import com.everis.dao.entity.User;
+import com.everis.service.dto.ApplicationDTO;
+import com.everis.service.dto.OfferDTO;
+import com.everis.service.dto.UserDTO;
 
 public class ApplicationTransformer extends AbstractTransformer<Application, ApplicationDTO> {
 
@@ -32,12 +32,12 @@ public class ApplicationTransformer extends AbstractTransformer<Application, App
 		applicationDTO.setId(application.getId());
 		applicationDTO.setStatus(application.getStatus());
 		applicationDTO.setApplicationDate(application.getApplicationDate());
-	
+
 		if (application != null) {
-			
+
 			if (application.getUser() != null && abstractTransformerUser != null)
 				applicationDTO.setUserDto(abstractTransformerUser.toDTO(application.getUser()));
-			
+
 			if (application.getOffer() != null && abstractTransformerOffer != null)
 				applicationDTO.setOfferDto(abstractTransformerOffer.toDTO(application.getOffer()));
 
@@ -55,10 +55,10 @@ public class ApplicationTransformer extends AbstractTransformer<Application, App
 		application.setApplicationDate(applicationDTO.getApplicationDate());
 
 		if (applicationDTO != null) {
-			
+
 			if (applicationDTO.getUserDto() != null && abstractTransformerUser != null)
 				application.setUser(abstractTransformerUser.toEntity(applicationDTO.getUserDto()));
-			
+
 			if (applicationDTO.getOfferDto() != null && abstractTransformerOffer != null)
 				application.setOffer(abstractTransformerOffer.toEntity(applicationDTO.getOfferDto()));
 

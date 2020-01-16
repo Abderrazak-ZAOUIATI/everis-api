@@ -1,6 +1,5 @@
-package com.everis.entity;
+package com.everis.dao.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,11 +17,11 @@ public class Application {
 	private String applicationDate;
 	private String status;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId", referencedColumnName = "id")
 	private User user;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "offerId", referencedColumnName = "id")
 	private Offer offer;
 

@@ -1,9 +1,20 @@
-package com.everis.dto;
+package com.everis.dao.entity;
 
 import java.util.List;
 
-public class OfferDTO {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
+public class Offer {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String title;
 	private String description;
@@ -11,14 +22,14 @@ public class OfferDTO {
 	private String publicationDate;
 	private int numberOfApplications;
 	    
-	private List<ApplicationDTO> applications;
+	@OneToMany(mappedBy = "offer", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private List<Application> applications;
 	 
-	public OfferDTO() {
+	public Offer() {
 	}
 
-	public OfferDTO(int id, String title, String description, String status, String publicationDate,
-			int numberOfApplications, List<ApplicationDTO> applications) {
-		super();
+	public Offer(int id, String title, String description, String status, String publicationDate,
+			int numberOfApplications, List<Application> applications) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -78,11 +89,11 @@ public class OfferDTO {
 		this.numberOfApplications = numberOfApplications;
 	}
 
-	public List<ApplicationDTO> getApplications() {
+	public List<Application> getApplications() {
 		return applications;
 	}
 
-	public void setApplications(List<ApplicationDTO> applications) {
+	public void setApplications(List<Application> applications) {
 		this.applications = applications;
 	}
 
@@ -90,7 +101,7 @@ public class OfferDTO {
 	public String toString() {
 		return "Offer [id=" + id + ", title=" + title + ", description=" + description + ", status=" + status
 				+ ", publicationDate=" + publicationDate + ", numberOfApplications=" + numberOfApplications
-				+ ", applications=" + applications + "]";
+				+ "]";
 	}    
   
 	
