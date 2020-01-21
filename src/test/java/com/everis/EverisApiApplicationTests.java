@@ -40,8 +40,8 @@ class EverisApiApplicationTests {
 
 	// Set userId and articleId (from database) to permit delete and update
 	// functions.
-	int articleId = 3;
-	int userId = 3;
+	int articleId = 4;
+	int userId = 4;
 	
 	int offerId=4;
 	int apllicationId=4;
