@@ -18,9 +18,9 @@ public class GenericDAOImpl<T, K extends Serializable> implements GenericDAO<T, 
 	private Class<T> clazz;
 
 	private Logger logger = Logger.getLogger(GenericDAOImpl.class);
-	
-	private SessionFactory sessionFactory;
-	private Session session;
+
+	protected SessionFactory sessionFactory;
+	protected Session session;
 
 	public GenericDAOImpl(Class<T> clazz) {
 		this.clazz = clazz;
@@ -33,8 +33,8 @@ public class GenericDAOImpl<T, K extends Serializable> implements GenericDAO<T, 
 	public GenericDAOImpl() {
 	}
 
-	@Override
-	public void openConnexion() {
+	@SuppressWarnings("deprecation")
+	public void openConnection() {
 
 		this.sessionFactory = new Configuration().configure().buildSessionFactory();
 		this.session = this.sessionFactory.openSession();
@@ -42,8 +42,7 @@ public class GenericDAOImpl<T, K extends Serializable> implements GenericDAO<T, 
 
 	}
 
-	@Override
-	public void closeConnexion() {
+	public void closeConnection() {
 		this.session.clear();
 		this.sessionFactory.close();
 
@@ -52,10 +51,10 @@ public class GenericDAOImpl<T, K extends Serializable> implements GenericDAO<T, 
 	@Override
 	public T create(T t) {
 
-		openConnexion();
+		openConnection();
 		this.session.save(t);
 		this.session.getTransaction().commit();
-		closeConnexion();
+		closeConnection();
 
 		return t;
 	}
@@ -64,10 +63,10 @@ public class GenericDAOImpl<T, K extends Serializable> implements GenericDAO<T, 
 	public T update(T t) {
 
 		try {
-			openConnexion();
+			openConnection();
 			this.session.update(t);
 			this.session.getTransaction().commit();
-			closeConnexion();
+			closeConnection();
 			return t;
 
 		} catch (Exception e) {
@@ -81,13 +80,13 @@ public class GenericDAOImpl<T, K extends Serializable> implements GenericDAO<T, 
 
 		try {
 
-			openConnexion();
+			openConnection();
 
 			T t = (T) this.session.get(this.clazz, k);
 			this.session.delete(t);
 			this.session.getTransaction().commit();
 
-			closeConnexion();
+			closeConnection();
 
 			return t;
 		} catch (Exception e) {
@@ -100,11 +99,11 @@ public class GenericDAOImpl<T, K extends Serializable> implements GenericDAO<T, 
 	@Override
 	public Optional<T> getById(K k) {
 
-		openConnexion();
+		openConnection();
 
 		T t = (T) this.session.get(this.clazz, k);
 
-		closeConnexion();
+		closeConnection();
 
 		return Optional.ofNullable(t);
 	}
@@ -112,13 +111,13 @@ public class GenericDAOImpl<T, K extends Serializable> implements GenericDAO<T, 
 	@Override
 	public List<T> getAll() {
 
-		openConnexion();
+		openConnection();
 
 		Query query = this.session.createQuery("from " + this.clazz.getName());
 
 		List<T> tlist = query.list();
 
-		closeConnexion();
+		closeConnection();
 
 		return tlist;
 	}

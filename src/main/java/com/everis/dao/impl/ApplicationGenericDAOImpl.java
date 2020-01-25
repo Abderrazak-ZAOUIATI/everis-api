@@ -10,5 +10,4 @@ public class ApplicationGenericDAOImpl extends GenericDAOImpl<Application, Integ
 	public ApplicationGenericDAOImpl() {
 		super(Application.class);
 	}
-
 }

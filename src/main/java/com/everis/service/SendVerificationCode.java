@@ -32,7 +32,7 @@ public class SendVerificationCode {
 
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 			msg.setSubject("Verification Code");
-			msg.setContent("Hi "+name+",<br/> Here is your verification code : <h2>" + code + "</h2><br/> Thank you", "text/html");
+			msg.setContent("Hi "+name+",<br/><br/> Here is your verification code : <h2>" + code + "</h2><br/> Thank you", "text/html");
 			msg.setSentDate(new Date());
 
 			Transport.send(msg);

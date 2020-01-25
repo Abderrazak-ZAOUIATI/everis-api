@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 	public UserDTO create(UserDTO userDTO) {
 
 		User user = userTransformer.toEntity(userDTO);
-		
+		user.setType("Candidate");
 		//Create verification code
 		String verificationCode = UUID.randomUUID().toString().replace("-", "");
 		user.setCompteStatus(verificationCode);

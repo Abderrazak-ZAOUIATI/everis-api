@@ -21,10 +21,10 @@ public class Offer {
 	private String status;
 	private String publicationDate;
 	private int numberOfApplications;
-	    
+
 	@OneToMany(mappedBy = "offer", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Application> applications;
-	 
+
 	public Offer() {
 	}
 
@@ -79,8 +79,6 @@ public class Offer {
 		this.publicationDate = publicationDate;
 	}
 
-
-
 	public int getNumberOfApplications() {
 		return numberOfApplications;
 	}
@@ -100,10 +98,7 @@ public class Offer {
 	@Override
 	public String toString() {
 		return "Offer [id=" + id + ", title=" + title + ", description=" + description + ", status=" + status
-				+ ", publicationDate=" + publicationDate + ", numberOfApplications=" + numberOfApplications
-				+ "]";
-	}    
-  
-	
+				+ ", publicationDate=" + publicationDate + ", numberOfApplications=" + numberOfApplications + "]";
+	}
 
 }

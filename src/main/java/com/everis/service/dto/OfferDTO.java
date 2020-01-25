@@ -18,7 +18,6 @@ public class OfferDTO {
 
 	public OfferDTO(int id, String title, String description, String status, String publicationDate,
 			int numberOfApplications, List<ApplicationDTO> applicationsDto) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;

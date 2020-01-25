@@ -5,10 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {"com.everis"})
 public class EverisApiApplication{
-
 	
 	public static void main(String[] args) {
 		SpringApplication.run(EverisApiApplication.class, args);
 	}
-	
 }

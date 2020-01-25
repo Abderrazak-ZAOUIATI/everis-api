@@ -87,6 +87,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 		List<Application> applications = applicationGenericDAO.getAll();
 		List<ApplicationDTO> applicationsDTO = applicationTransformer.toDTOList(applications);
+
 		return applicationsDTO;
 	}
 

@@ -33,15 +33,13 @@ public class ApplicationTransformer extends AbstractTransformer<Application, App
 		applicationDTO.setStatus(application.getStatus());
 		applicationDTO.setApplicationDate(application.getApplicationDate());
 
-		if (application != null) {
-
-			if (application.getUser() != null && abstractTransformerUser != null)
+		if (application.getUser() != null && abstractTransformerUser != null)
 				applicationDTO.setUserDto(abstractTransformerUser.toDTO(application.getUser()));
 
-			if (application.getOffer() != null && abstractTransformerOffer != null)
+		if (application.getOffer() != null && abstractTransformerOffer != null)
 				applicationDTO.setOfferDto(abstractTransformerOffer.toDTO(application.getOffer()));
 
-		}
+		
 		return applicationDTO;
 	}
 

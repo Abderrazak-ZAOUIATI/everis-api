@@ -82,4 +82,5 @@ public class Application {
 		return "Application [id=" + id + ", applicationDate=" + applicationDate + ", status=" + status + "]";
 	}
 
+	
 }

@@ -1,5 +1,6 @@
 package com.everis.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,8 @@ public class ArticleServiceImpl implements ArticleService {
 
 		Article article = articleTransformer.toEntity(articleDTO);
 		Article articleResult = articleGenericDAO.create(article);
-		ArticleDTO articleDTOResult = articleTransformer.toDTO(articleResult);
 
-		return articleDTOResult;
+		return articleTransformer.toDTO(articleResult);
 	}
 
 	@Override
@@ -78,8 +78,26 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<ArticleDTO> getAll() {
 
 		List<Article> articles = articleGenericDAO.getAll();
-		List<ArticleDTO> articlesDTO = articleTransformer.toDTOList(articles);
-		return articlesDTO;
+		return articleTransformer.toDTOList(articles);
+	}
+
+	@Override
+	public ArticleDTO changeArticleStatus(int articleId) {
+
+		List<String> result = new ArrayList<>();
+		
+		Optional<Article> articleOptional = articleGenericDAO.getById(articleId);
+
+		Article article = null;
+		if (articleOptional.isPresent()) {
+			
+			article = articleOptional.get();
+			article.setStatus(article.getStatus().equals("Active") ? "Inactive" : "Active");
+			article = articleGenericDAO.update(article);
+			result.add("Success");
+		}
+
+		return articleTransformer.toDTO(article);
 	}
 
 }

@@ -6,13 +6,9 @@ import java.util.Optional;
 
 public interface GenericDAO<T, K extends Serializable> {
 
-	void openConnexion();
-
-	void closeConnexion();
-
 	T create(T t);
 
-	T update(T t);
+	T update(T t); 
 
 	T delete(K k);
 

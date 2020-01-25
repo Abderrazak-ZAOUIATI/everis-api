@@ -3,8 +3,6 @@ package com.everis.api;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
